@@ -50,7 +50,7 @@ const CartModal = ({ isOpen, onClose, cart, productsUrl, onDeleteFromCart }) => 
                 <div className="cart-item-details">
                   <h2>{item.name}</h2>
                   <p>Артикул: {item.article}</p>
-                  <p>Колір: {item.color}</p>
+                  <p>Розробник: {item.developer}</p>
                   <p>Ціна: ${item.price.toFixed(2)}</p>
                   <p>Кількість: {item.quantity}</p>
                   <Button

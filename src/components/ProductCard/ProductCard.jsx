@@ -30,7 +30,7 @@ const ProductCard = ({ product, onAddToCart, onToggleFavorite }) => {
       <div className="product-details">
         <h2>{product.name}</h2>
         <p>Артикул: {product.article}</p>
-        <p>Колір: {product.color}</p>
+        <p>Розробник: {product.developer}</p>
         <p>${product.price.toFixed(2)}</p>
         <Button classNames="primary" onClick={handleAddToCart}>
           Додати в кошик
@@ -47,7 +47,7 @@ ProductCard.propTypes = {
     price: PropTypes.number.isRequired,
     imageUrl: PropTypes.string.isRequired,
     article: PropTypes.string.isRequired,
-    color: PropTypes.string.isRequired,
+    developer: PropTypes.string.isRequired,
   }).isRequired,
   onAddToCart: PropTypes.func.isRequired,
   onToggleFavorite: PropTypes.func.isRequired,

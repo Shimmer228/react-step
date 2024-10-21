@@ -1,83 +1,83 @@
 [
     {
       "id": 1,
-      "name": "Stylish Shirt",
-      "price": 29.99,
-      "imageUrl": "https://via.placeholder.com/300x200?text=Shirt+1",
+      "name": "Baldur's Gate 3",
+      "price": 59.99,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/ru/d/dc/Baldur%27s_Gate_III_Logo.png",
       "article": "1001",
-      "color": "Blue"
+      "developer": "Larian Studios"
     },
     {
       "id": 2,
-      "name": "Casual Jeans",
-      "price": 49.99,
-      "imageUrl": "https://via.placeholder.com/300x200?text=Jeans+1",
+      "name": "The Witcher 3: Wild Hunt",
+      "price": 39.99,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg",
       "article": "1002",
-      "color": "Black"
+      "developer": "CD Project Red"
     },
     {
       "id": 3,
-      "name": "Running Shoes",
+      "name": "Cyberpunk 2077",
       "price": 59.99,
-      "imageUrl": "https://via.placeholder.com/300x200?text=Shoes+1",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/uk/4/48/Cyberpunk_2077_poster.jpg",
       "article": "1003",
-      "color": "Red"
+      "developer": "CD Project Red"
     },
     {
       "id": 4,
-      "name": "Summer Hat",
-      "price": 19.99,
-      "imageUrl": "https://via.placeholder.com/300x200?text=Hat+1",
+      "name": "Hunt: Showdown 1896",
+      "price": 29.99,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/a5/Hunt_Showdown_cover_art.png",
       "article": "1004",
-      "color": "White"
+      "developer": "Crytek"
     },
     {
       "id": 5,
-      "name": "Leather Belt",
-      "price": 24.99,
-      "imageUrl": "https://via.placeholder.com/300x200?text=Belt+1",
+      "name": "Arma 3",
+      "price": 29.99,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/uk/9/9c/Arma_3.jpg",
       "article": "1005",
-      "color": "Brown"
+      "developer": "Bohemia Interactive"
     },
     {
       "id": 6,
-      "name": "Elegant Watch",
-      "price": 99.99,
-      "imageUrl": "https://via.placeholder.com/300x200?text=Watch+1",
+      "name": "Dishonored",
+      "price": 9.99,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/uk/a/ad/Dishonored_box_art.jpg",
       "article": "1006",
-      "color": "Silver"
+      "developer": "Arkane Studios"
     },
     {
       "id": 7,
-      "name": "Casual T-Shirt",
-      "price": 15.99,
-      "imageUrl": "https://via.placeholder.com/300x200?text=T-Shirt+1",
+      "name": "Dishonored 2",
+      "price": 29.99,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/uk/b/bf/Dishonored_2_Xbox_One_cover.jpg",
       "article": "1007",
-      "color": "Green"
+      "developer": "Arkane Studios"
     },
     {
       "id": 8,
-      "name": "Formal Shoes",
-      "price": 79.99,
-      "imageUrl": "https://via.placeholder.com/300x200?text=Shoes+2",
+      "name": "Helldivers 2 ",
+      "price": 39.99,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/uk/thumb/0/0d/Helldivers_2_poster.png/250px-Helldivers_2_poster.png",
       "article": "1008",
-      "color": "Black"
+      "developer": "Arrowhead Game Studios"
     },
     {
       "id": 9,
-      "name": "Winter Jacket",
-      "price": 120.00,
-      "imageUrl": "https://via.placeholder.com/300x200?text=Jacket+1",
+      "name": "Kingdom Come: Deliverance",
+      "price": 29.00,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/fd/Kingdom_Come_Deliverance.jpg",
       "article": "1009",
-      "color": "Gray"
+      "developer": "Warhorse Studios"
     },
     {
       "id": 10,
-      "name": "Sports Cap",
-      "price": 14.99,
-      "imageUrl": "https://via.placeholder.com/300x200?text=Cap+1",
+      "name": "Red Dead Redemption 2",
+      "price": 59.99,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/uk/b/bc/%D0%9E%D0%B1%D0%BA%D0%BB%D0%B0%D0%B4%D0%B8%D0%BD%D0%BA%D0%B0_%D0%B2%D1%96%D0%B4%D0%B5%D0%BE%D0%B3%D1%80%D0%B8_Red_Dead_Redemption_2.jpg",
       "article": "1010",
-      "color": "Blue"
+      "color": "Rockstar Games"
     }
   ]
   
