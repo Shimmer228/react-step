@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      <h1>My Game Store</h1>
+      <a className='Logo' href='https://youtu.be/eaEMSKzqGAg?si=txQw9TiN_7ldSUUb'>GameShop</a>
       <nav className="header-nav">
         <Link to="/">Головна</Link>
         <Link to="/cart">

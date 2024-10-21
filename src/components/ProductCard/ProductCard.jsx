@@ -9,7 +9,7 @@ const ProductCard = ({ product, onAddToCart, onToggleFavorite, isFavorite   }) =
   return (
     <div className="product-card">
       <div className="favorite-icon" onClick={onToggleFavorite}>
-        <FaStar color={isFavorite ? 'gold' : 'gray'} />
+        <FaStar color={isFavorite ? '#4caf50' : 'gray'} />
       </div>
       <img src={product.imageUrl} alt={product.name} />
       <div className="product-details">

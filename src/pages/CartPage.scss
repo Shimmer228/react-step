@@ -1,11 +1,15 @@
 
 .cart-page {
     padding: 20px;
-  
+
     .cart-items{
       margin-right: 15%;
       margin-left: 15%;
       min-width: 300px;
+    }
+    .toggle-form-btn{
+      display: block;
+      margin-bottom: 20px;
     }
     .products-grid {
       display: grid;
@@ -18,16 +22,28 @@
       color: aliceblue;
     }
     .cart-total {
-      text-align: right;
+      text-align: center;
       font-size: 22px;
       font-weight: bold;
       margin-top: 20px;
       display: block;
+      color:aliceblue;
     }
     .price{
       margin-top: 10px;
+      font-size: 26px;
+      font-weight: 900;
       margin-bottom: 5px;
-      color: blue;
+      color: #acd550;
     }
     .empty{color:white}
+    .success-message {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px;
+      margin: 20px 0;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 18px;
+    }
 }

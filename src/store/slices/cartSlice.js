@@ -27,12 +27,14 @@ const cartSlice = createSlice({
     setCart: (state, action) => {
       return action.payload;
     },
-    
+    clearCart: (state) => {
+      return {};
+    },
   },
 
 });
 
-export const { addToCart, removeFromCart, setCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, setCart, clearCart } = cartSlice.actions;
 
 export const confirmAddToCart = (product) => (dispatch) => {
   console.log("+")

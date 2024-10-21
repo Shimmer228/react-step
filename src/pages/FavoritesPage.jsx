@@ -33,7 +33,7 @@ const FavoritesPage = () => {
           {favoriteItems.map(product => (
             <div key={product.id} className="product-card">
                 <div className="favorite-icon" onClick={() => handleToggleFavorite(product.id)}>
-                  <FaStar color={'gold'} />
+                  <FaStar color={'#4caf50'} />
                 </div>
               <img src={product.imageUrl} alt={product.name} className="modal-product-image" />
               <h2>{product.name}</h2>
