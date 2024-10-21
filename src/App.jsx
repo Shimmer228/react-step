@@ -3,20 +3,20 @@ import React, { useState, useEffect } from 'react';
 import './App.scss';
 import Header from './components/Header/Header';
 import ProductList from './components/ProductList/ProductList';
-import CartModal from './components/CartModal/CartModal';
+import CartPage from './pages/CartPage';
+import FavoritesPage from './pages/FavoritesPage'; // Створимо новий компонент FavoritesPage
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 const App = () => {
   console.log("App компонент рендериться");
 
   const [cart, setCart] = useState({});
   const [favorites, setFavorites] = useState([]);
-  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
   // Завантажити кошик та обране з localStorage при завантаженні
   useEffect(() => {
     console.log("useEffect для завантаження кошика і обраного");
     const savedCart = JSON.parse(localStorage.getItem('cart')) || {};
-    console.log("+");
     setCart(savedCart);
     const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(savedFavorites);
@@ -36,7 +36,6 @@ const App = () => {
 
   // Додати продукт до кошика або збільшити кількість
   const handleAddToCart = (product) => {
-    console.log(`Додаємо до кошика продукт з id: ${product.id}`);
     setCart((prevCart) => ({
       ...prevCart,
       [product.id]: prevCart[product.id] ? prevCart[product.id] + 1 : 1,
@@ -45,7 +44,6 @@ const App = () => {
 
   // Видалити продукт з кошика
   const handleDeleteFromCart = (productId) => {
-    console.log(`Видаляємо з кошика продукт з id: ${productId}`);
     setCart((prevCart) => {
       const newCart = { ...prevCart };
       delete newCart[productId];
@@ -55,7 +53,6 @@ const App = () => {
 
   // Додати або видалити з обраного
   const handleToggleFavorite = (productId) => {
-    console.log(`Тоглемо обране для продукту з id: ${productId}`);
     setFavorites((prevFavorites) =>
       prevFavorites.includes(productId)
         ? prevFavorites.filter((id) => id !== productId)
@@ -63,38 +60,44 @@ const App = () => {
     );
   };
 
-  // Відкрити модалку кошика
-  const openCartModal = () => {
-    console.log("Відкриваємо модалку кошика");
-    setIsCartModalOpen(true);
-  };
-  // Закрити модалку кошика
-  const closeCartModal = () => {
-    console.log("Закриваємо модалку кошика");
-    setIsCartModalOpen(false);
-  };
-
   return (
-    <div className="App">
-      <Header
-        cartCount={Object.values(cart).reduce((acc, curr) => acc + curr, 0)}
-        favoriteCount={favorites.length}
-        onCartClick={openCartModal}
-      />
-      <ProductList onAddToCart={handleAddToCart} onToggleFavorite={handleToggleFavorite} />
-
-
-
-      {/* Модалка кошика */}
-      <CartModal
-        isOpen={isCartModalOpen}
-        onClose={closeCartModal}
-        cart={cart}
-        productsUrl="./products.json"
-        onDeleteFromCart={handleDeleteFromCart}
-      />
-      
-    </div>
+    <Router>
+      <div className="App">
+        <Header
+          cartCount={Object.values(cart).reduce((acc, curr) => acc + curr, 0)}
+          favoriteCount={favorites.length}
+        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProductList
+                onAddToCart={handleAddToCart}
+                onToggleFavorite={handleToggleFavorite}
+              />
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <CartPage
+                cart={cart}
+                onDeleteFromCart={handleDeleteFromCart}
+              />
+            }
+          />
+          <Route
+            path="/favorites"
+            element={
+              <FavoritesPage
+                favorites={favorites}
+                onToggleFavorite={handleToggleFavorite}
+              />
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 

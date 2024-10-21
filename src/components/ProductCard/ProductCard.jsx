@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ProductCard.scss';
 import PropTypes from 'prop-types';
-import Button from '../Button/Button';
 import { FaStar } from 'react-icons/fa';
 
 const ProductCard = ({ product, onAddToCart, onToggleFavorite }) => {
