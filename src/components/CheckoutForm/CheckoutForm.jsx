@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import './CheckoutForm.scss';
+import './CheckoutForm.scss'; //закоментувати для проходження тесту(???)
 import { NumericFormat } from 'react-number-format';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../../store/slices/cartSlice';

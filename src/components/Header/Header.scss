@@ -20,6 +20,11 @@
     display: flex;
     align-items: center;
 
+    .viewChanger{
+      position: relative;
+      top: 0px;
+    }
+    
     a {
       margin-left: 20px;
       text-decoration: none;

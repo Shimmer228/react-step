@@ -17,6 +17,7 @@ const App = () => {
   const confirmationMessage = useSelector(state => state.modal.confirmationMessage);  // Отримання стану модалки
   const modalProduct = useSelector((state) => state.modal.product);  // Отримання продукту, що модифікується
 
+
   // Завантажити дані з localStorage при завантаженні
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem('cart')) || {};

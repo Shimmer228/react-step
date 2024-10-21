@@ -1,40 +1,106 @@
-/* src/components/ProductList/ProductList.scss */
-
 .product-list {
-    padding: 20px;
-    margin: 0 40px; /* Центрування контейнера */
-  
+  padding: 20px;
+  margin: 0 40px;
+
+  &.table-view {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #171a21;
+      color: #646cff;
+
+      th, td {
+        padding: 12px;
+        border: 1px solid #1b2838;
+        vertical-align: middle;
+      }
+
+      th {
+        background-color: #171a21;
+        font-weight: bold;
+        text-align: left;
+      }
+
+      td {
+        height: 90px;
+
+        
+      }
+      .imageContainer{
+        padding: 0;
+      }
+      .product-image {
+        width: 100%;
+        height: 140%;
+        object-fit:contain;
+        margin-right: 15px;
+        border-radius: 4px;
+      }
+
+      .product-details {
+        display: flex; /* Add flexbox to align items horizontally */
+        flex-direction: column;
+        justify-content: center;
+        .product-name {
+          font-size: 18px;
+          font-weight: bold;
+        }
+        .product-developer {
+          font-size: 14px;
+          color: #8f98a0;
+        }
+      }
+
+      .product-price {
+        font-size: 25px;
+        font-weight: bold;
+        color: #acd550;
+        white-space: nowrap;
+      }
+
+      .actions {
+        text-align: center;
+        display: flex;
+        border-bottom: none;
+        height: 109px;
+        border-left: none;
+        flex-direction: column; /* Ensure actions stack vertically */
+        justify-content: center;
+        align-items: center;
+
+        button {
+          width: 70%;
+          background-color: #acd550;
+          border: none;
+          padding: 10px;
+          color: rgba(80, 80, 80, 0.993);
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #646cff;
+          }
+        }
+
+        .favorite-icon-table-view {
+          cursor: pointer;
+          margin-bottom: 10px;
+          font-size: 20px;
+          color: #c7d5e0;
+
+          &.active {
+            color: #acd550;
+          }
+        }
+      }
+    }
+  }
+
+  &.card-view {
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
       gap: 40px;
     }
-  
-    .modal-content-confirmation {
-      text-align: center;
-  
-      .modal-product-image {
-        width: 100%;
-        max-width: 200px;
-        height: auto;
-        border-radius: 8px;
-        margin-bottom: 20px;
-      }
-  
-      h1 {
-        font-size: 22px;
-        margin-bottom: 10px;
-      }
-  
-      h3 {
-        font-size: 18px;
-        color: #007bff;
-        margin-bottom: 10px;
-      }
-  
-      p {
-        font-size: 16px;
-      }
-    }
   }
-  
+}

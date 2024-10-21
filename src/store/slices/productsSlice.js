@@ -1,7 +1,6 @@
 // src/redux/productsSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Асинхронний екшен для завантаження продуктів
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async () => {
@@ -15,7 +14,7 @@ const productsSlice = createSlice({
   name: 'products',
   initialState: {
     items: [],
-    status: 'idle', // idle, loading, succeeded, failed
+    status: 'idle',
     error: null,
   },
   reducers: {},
@@ -26,7 +25,7 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.items = action.payload; // Зберігаємо продукти
+        state.items = action.payload;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = 'failed';

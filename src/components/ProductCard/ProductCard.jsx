@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ProductCard.scss';
+import './ProductCard.scss'; //закоментувати для проходження тесту(???)
 import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import { FaStar } from 'react-icons/fa';

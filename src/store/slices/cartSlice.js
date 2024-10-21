@@ -48,7 +48,7 @@ export const confirmAddToCart = (product) => (dispatch) => {
 
 export const proceedAddToCart = (product) => (dispatch) => {
   dispatch(addToCart(product));
-  dispatch(setModalOpen({ isOpen: false }));  // закриваємо модалку
+  dispatch(setModalOpen({ isOpen: false })); 
 };
 export const confirmDeleteFromCart = (product) => (dispatch) => {
   console.log("-")

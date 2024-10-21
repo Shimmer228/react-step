@@ -33,7 +33,6 @@ const CartModal = ({ isOpen, onClose, cart, productsUrl, onDeleteFromCart }) => 
         firstClick: onClose,
         secondaryText: 'Оформити Замовлення',
         secondaryClick: () => {
-          // Тут можна додати логіку оформлення замовлення
           onClose();
           alert('Замовлення оформлено!');
         },
