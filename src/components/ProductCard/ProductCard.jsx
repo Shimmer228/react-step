@@ -1,28 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './ProductCard.scss';
 import PropTypes from 'prop-types';
+import Button from '../Button/Button';
 import { FaStar } from 'react-icons/fa';
 
-const ProductCard = ({ product, onAddToCart, onToggleFavorite }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    setIsFavorite(favorites.includes(product.id));
-  }, [product.id]);
-
-  const handleFavoriteClick = () => {
-    onToggleFavorite(product.id);
-    setIsFavorite(!isFavorite);
-  };
-
-  const handleAddToCart = () => {
-    onAddToCart(product);
-  };
+const ProductCard = ({ product, onAddToCart, onToggleFavorite, isFavorite   }) => {
 
   return (
     <div className="product-card">
-      <div className="favorite-icon" onClick={handleFavoriteClick}>
+      <div className="favorite-icon" onClick={onToggleFavorite}>
         <FaStar color={isFavorite ? 'gold' : 'gray'} />
       </div>
       <img src={product.imageUrl} alt={product.name} />
@@ -30,8 +16,8 @@ const ProductCard = ({ product, onAddToCart, onToggleFavorite }) => {
         <h2>{product.name}</h2>
         <p>Артикул: {product.article}</p>
         <p>Розробник: {product.developer}</p>
-        <p>${product.price.toFixed(2)}</p>
-        <Button classNames="primary" onClick={handleAddToCart}>
+        <p className='price'>${product.price.toFixed(2)}</p>
+        <Button classNames="primary" onClick={onAddToCart}>
           Додати в кошик
         </Button>
       </div>

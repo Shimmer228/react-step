@@ -1,43 +1,47 @@
-// src/components/FavoritesPage/FavoritesPage.jsx
-import React, { useState, useEffect } from 'react';
-import '../components/ProductCard/ProductCard.scss'
-import '../components/ProductList/ProductList.scss'
-import './FavoritesPage.scss'
+// src/pages/FavoritesPage.jsx
+import React from 'react';
+import './FavoritesPage.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { proceedAddToCart } from '../store/slices/cartSlice';
+import { toggleFavorite } from '../store/slices/favoriteSlice';
 import { FaStar } from 'react-icons/fa';
-const FavoritesPage = ({ favorites, onToggleFavorite }) => {
-  const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    fetch('/products.json')
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.error('Error fetching products:', error));
-  }, []);
+const FavoritesPage = () => {
+  const dispatch = useDispatch();
+  const favorites = useSelector(state => state.favorites);
+  const products = useSelector(state => state.products.items);
 
-  const favoriteItems = products.filter((product) =>
-    favorites.includes(product.id)
-  );
+  const handleAddToCart = (product) => {
+    dispatch(proceedAddToCart(product.id));
+    dispatch(toggleFavorite(product.id));
+    
+  };
+  const handleToggleFavorite = (productId) => {
+    console.log(productId)
+    dispatch(toggleFavorite(productId)); // Оновлений виклик з передачею productId
+}
+  const favoriteItems = products.filter(product => favorites.includes(product.id));
+
 
   return (
     <div className="favorites-page">
       <h1>Ваше Обране</h1>
       {favoriteItems.length === 0 ? (
-        <p>Немає обраних товарів.</p>
+        <p className='empty'>Ваш список обраного порожній.</p>
       ) : (
-        <ul className="favorite-items">
-          {favoriteItems.map((item) => (
-            <li key={item.id} className="product-card">
-              <img src={item.imageUrl} alt={item.name} />
-              <div>
-                <h2>{item.name}</h2>
-                <p>Ціна: ${item.price.toFixed(2)}</p>
-                <div className="favorite-icon" onClick={() => onToggleFavorite(item.id)}>
-                  <FaStar />
+        <div className="products-grid">
+          {favoriteItems.map(product => (
+            <div key={product.id} className="product-card">
+                <div className="favorite-icon" onClick={() => handleToggleFavorite(product.id)}>
+                  <FaStar color={'gold'} />
                 </div>
-              </div>
-            </li>
+              <img src={product.imageUrl} alt={product.name} className="modal-product-image" />
+              <h2>{product.name}</h2>
+              <p className='price'>${product.price.toFixed(2)}</p>
+              <button onClick={() => handleAddToCart(product)}>Додати до кошику</button>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

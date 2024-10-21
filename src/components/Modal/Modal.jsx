@@ -1,3 +1,4 @@
+// src/components/Modal.jsx
 import React from 'react';
 import ModalWrapper from './ModalWrapper';
 import ModalHeader from './ModalHeader';
@@ -6,7 +7,7 @@ import ModalFooter from './ModalFooter';
 import ModalClose from './ModalClose';
 import PropTypes from 'prop-types';
 
-const Modal = ({ isOpen, onClose, title, children, footer }) => {
+const Modal = ({ isOpen, onClose, title, children, footer, product }) => {
   if (!isOpen) return null;
 
   return (
@@ -15,7 +16,16 @@ const Modal = ({ isOpen, onClose, title, children, footer }) => {
         {title}
         <ModalClose onClick={onClose} />
       </ModalHeader>
-      <ModalBody>{children}</ModalBody>
+      <ModalBody>
+        {product && (
+          <div>
+            <h2>{product.name}</h2>
+            <img src={product.imageUrl} alt={product.name} />
+            <h3>{product.price}$</h3>
+          </div>
+        )}
+        {children}
+      </ModalBody>
       {footer && <ModalFooter {...footer} />}
     </ModalWrapper>
   );
@@ -32,10 +42,12 @@ Modal.propTypes = {
     firstClick: PropTypes.func,
     secondaryClick: PropTypes.func,
   }),
+  product: PropTypes.object,
 };
 
 Modal.defaultProps = {
   footer: null,
+  product: null,
 };
 
 export default Modal;

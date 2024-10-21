@@ -1,5 +1,9 @@
 .header {
   display: flex;
+  position: sticky;
+  top: 0;
+  padding: 10px 16px;
+  z-index: 999;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
@@ -8,6 +12,7 @@
   h1 {
     margin: 0;
     font-size: 24px;
+    color: #201e1e;
   }
 
   .header-nav {

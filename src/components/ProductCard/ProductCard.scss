@@ -3,6 +3,7 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 15px;
+    
     text-align: center;
     transition: box-shadow 0.3s ease;
     background-color: #a7a6a8;
@@ -20,13 +21,14 @@
     }
   
     img {
-      max-width: 100%;
-      height: 150px;
+      width: 60%;
+      height: 55%;
       object-fit: cover;
       margin-bottom: 15px;
     }
   
     .product-details {
+      
       h2 {
         font-size: 18px;
         margin: 0 0 10px 0;
@@ -34,10 +36,17 @@
   
       p {
         margin: 5px 0;
+        color: black;
       }
-  
-      .primary {
+      .price{
         margin-top: 10px;
+        margin-bottom: 5px;
+        color: blue;
+      }
+
+      button{
+        position: relative;
+        bottom: 5px;
       }
     }
   }

@@ -1,101 +1,78 @@
-// src/App.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './App.scss';
 import Header from './components/Header/Header';
 import ProductList from './components/ProductList/ProductList';
 import CartPage from './pages/CartPage';
-import FavoritesPage from './pages/FavoritesPage'; // Створимо новий компонент FavoritesPage
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import FavoritesPage from './pages/FavoritesPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';  
+import { fetchProducts } from './store/slices/productsSlice';
+import { setCart, proceedAddToCart, proceedDeleteFromCart } from './store/slices/cartSlice';
+import { setFavorites } from './store/slices/favoriteSlice';
+import { clearConfirmationMessage } from './store/slices/modalSlice'; 
+import Modal from './components/Modal/Modal'; 
 
 const App = () => {
-  console.log("App компонент рендериться");
+  const dispatch = useDispatch();
+  const confirmationMessage = useSelector(state => state.modal.confirmationMessage);  // Отримання стану модалки
+  const modalProduct = useSelector((state) => state.modal.product);  // Отримання продукту, що модифікується
 
-  const [cart, setCart] = useState({});
-  const [favorites, setFavorites] = useState([]);
-
-  // Завантажити кошик та обране з localStorage при завантаженні
+  // Завантажити дані з localStorage при завантаженні
   useEffect(() => {
-    console.log("useEffect для завантаження кошика і обраного");
     const savedCart = JSON.parse(localStorage.getItem('cart')) || {};
-    setCart(savedCart);
+    dispatch(setCart(savedCart));
     const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    setFavorites(savedFavorites);
-  }, []);
+    dispatch(setFavorites(savedFavorites));
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
-  // Оновлювати localStorage при зміні кошика
-  useEffect(() => {
-    console.log('Кошик оновлено:', cart);
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
-
-  // Оновлювати localStorage при зміні обраного
-  useEffect(() => {
-    console.log('Обране оновлено:', favorites);
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-  }, [favorites]);
-
-  // Додати продукт до кошика або збільшити кількість
-  const handleAddToCart = (product) => {
-    setCart((prevCart) => ({
-      ...prevCart,
-      [product.id]: prevCart[product.id] ? prevCart[product.id] + 1 : 1,
-    }));
+  // Закриття модалки
+  const handleClose = () => {
+    dispatch(clearConfirmationMessage());
   };
 
-  // Видалити продукт з кошика
-  const handleDeleteFromCart = (productId) => {
-    setCart((prevCart) => {
-      const newCart = { ...prevCart };
-      delete newCart[productId];
-      return newCart;
-    });
+  // Підтвердити додавання
+  const handleConfirmAdd = () => {
+    if (modalProduct) {
+        dispatch(proceedAddToCart(modalProduct.id));  // Додавання продукту до кошика
+    }
+    handleClose();
   };
 
-  // Додати або видалити з обраного
-  const handleToggleFavorite = (productId) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.includes(productId)
-        ? prevFavorites.filter((id) => id !== productId)
-        : [...prevFavorites, productId]
-    );
+  // Підтвердити видалення
+  const handleConfirmDelete = () => {
+    if (modalProduct) {
+        dispatch(proceedDeleteFromCart(modalProduct.id));  // Видалення продукту з кошика
+    }
+    handleClose();
   };
+
 
   return (
     <Router>
       <div className="App">
-        <Header
-          cartCount={Object.values(cart).reduce((acc, curr) => acc + curr, 0)}
-          favoriteCount={favorites.length}
-        />
+        <Header />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <ProductList
-                onAddToCart={handleAddToCart}
-                onToggleFavorite={handleToggleFavorite}
-              />
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              <CartPage
-                cart={cart}
-                onDeleteFromCart={handleDeleteFromCart}
-              />
-            }
-          />
-          <Route
-            path="/favorites"
-            element={
-              <FavoritesPage
-                favorites={favorites}
-                onToggleFavorite={handleToggleFavorite}
-              />
-            }
-          />
+          <Route path="/" element={<ProductList />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
         </Routes>
+
+        {/* Модалка для додавання або видалення товару */}
+        <Modal
+          isOpen={!!confirmationMessage}
+          onClose={handleClose}
+          title="Підтвердження"
+          product={modalProduct}
+          footer={{
+            firstText: 'Скасувати',
+            firstClick: handleClose,
+            secondaryText: confirmationMessage.includes('видалити') ? 'Видалити' : 'Підтвердити',  // Кнопка змінюється в залежності від дії
+            secondaryClick: confirmationMessage.includes('видалити') ? handleConfirmDelete : handleConfirmAdd,  // Виклик відповідної функції
+          }}
+        >
+          <p>{confirmationMessage}</p>
+        </Modal>
       </div>
     </Router>
   );
